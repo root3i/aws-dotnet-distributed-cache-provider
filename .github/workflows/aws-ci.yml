@@ -15,7 +15,7 @@ concurrency:
 jobs:
   run-ci:
     name: Run CI
-    runs-on: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) && 'ubuntu-latest' || format('codebuild-devex-ci-{0}-{1}', github.run_id, github.run_attempt) }}
+    runs-on: codebuild-devex-ci-${{ github.run_id }}-${{ github.run_attempt }}
     timeout-minutes: 180
     permissions:
       id-token: write # to assume AWS roles via OIDC for test execution
